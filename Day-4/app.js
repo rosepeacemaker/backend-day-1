@@ -30,15 +30,21 @@ console.log(notes);
    
 })
 
-// DELETE method uses with  index like  /notes/:index
-// req params.index
-app.delete("/notes/:index", (req,res)=>{
-    delete notes [req.params.index]
-
-    console.log("notes Deleted");
-    
+// create api for create note from client side
+app.get("/notes", (req,res)=>{
+    res.send(notes)
 })
 
+
+// DELETE method uses with  index like  /notes/:index
+// req params.index //param tb use huta jb koi aik index del krna ho koi aik... single value k liye// 
+app.delete("/notes/:index", (req,res)=>{
+    delete notes[req.params.index]
+    res.send("note deleted !!")
+
+   
+    
+})
 
 // PATCh  /notes/:index //
 // req.body = {description:- "sample modified descrtiption."}
@@ -46,7 +52,7 @@ app.delete("/notes/:index", (req,res)=>{
 
 app.patch("/notes/:index",(req,res)=>{
 
-    notes[req.params.index].descriptiom = req.body.description
+    notes[req.params.index].description = req.body.description
     res.send("Note updated successfully")
 
 })
